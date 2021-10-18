@@ -9,16 +9,20 @@ class Complex{
  void setreal(double newr);
  void setimm(double newi);
 
- double re();
- double im();
- double mag();
+ double re() const;
+ double im() const;
+ double mag() const;
  //double r();
 
  void reset();
- void printalg();
+ void printalg() const;
  void printmag();
 
- Complex Operatorplus(Complex& cn);
+ Complex Operatorplus(const Complex& cn);
+ Complex Operatorminus(const Complex& cn);
+ Complex Operatortimes(const Complex& cn);
+ Complex Operatorover(const Complex& cn);
+ Complex Operatordouble(double d,const Complex& cn);
  // void printesp();
 
  private:

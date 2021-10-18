@@ -29,15 +29,15 @@ using namespace std;
   }
 
   //Funzioni getters
-  double Complex::re () {
+  double Complex::re () const{
     return real_;
   }
 
-  double Complex::im() {
+  double Complex::im() const{
     return imm_;
   }
 
-  double Complex::mag() {
+  double Complex::mag() const{
     double magnitude=sqrt(pow(real_,2)+pow(imm_,2));
     return magnitude;
   }
@@ -52,7 +52,7 @@ using namespace std;
 
   //Funzioni stampa 
 
-  void Complex::printalg () {
+  void Complex::printalg () const{
     cout<<"Numero complesso: "<<real_<<" +i"<<imm_<<endl;
   }
 
@@ -64,20 +64,40 @@ void Complex::printmag() {
 
   //Funzioni di overlaoding
 
-Complex Complex::Operatorplus(Complex& cn) {
+Complex Complex::Operatorplus(const Complex& cn) {
   double real=real_+cn.re();
   double imm=imm_+cn.im();
 
   return Complex(real,imm);
 }
 
-  Complex Complex::Operatorminus(Complex &cn) {
+  Complex Complex::Operatorminus(const Complex &cn) {
     double real=real_-cn.re();
     double imm=imm_-cn.im();
     
     return Complex (real,imm);
 }
 
+Complex Complex::Operatortimes(const Complex &cn) {
+  double real=((real_*cn.re())-(imm_*cn.im()));
+  double imm=((real_*cn.im())+(imm_*cn.re()));
+
+  return Complex (real,imm);
+}
+
+Complex Complex::Operatorover(const Complex &cn) {
+  double real=(((real_*cn.re())+(imm_*cn.im())))/(pow(cn.re(),2)+pow(cn.im(),2));
+  double imm=((imm_*cn.re())-(real_*cn.im()))/(pow(cn.re(),2)+pow(cn.im(),2));
+
+  return Complex (real,imm);
+}
+
+Complex Complex::Operatordouble(double d, const Complex& cn) {
+  double real=d*cn.re();
+  double imm=cn.im();
+
+  return Complex (real,imm);
+}
 
 
  
